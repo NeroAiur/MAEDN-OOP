@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         null, null, null, null, null
                     ]
     let diceRoll;
-    let getOutRollAmount = 0;
     let currentPlayer = 1;
     
     // defining classes
@@ -61,6 +60,51 @@ document.addEventListener("DOMContentLoaded", () => {
             this.isHome = undefined;
             this.isEnd = undefined;
         }
+
+        previewMove(roll) {
+            removePreview();
+            if (roll == null) return;
+            if (this.position.endsWith("H1") || this.position.endsWith("H2") || this.position.endsWith("H3") || this.position.endsWith("H4")) {
+                if (roll != 6) {
+                    return;
+                } else {
+                    this.target = this.player.startingPoint;
+                }
+            } else this.target = (parseInt(this.position) + roll);
+            board[this.target.toString()].classList.add("eligable");
+            return;
+        }
+
+        executeMove(roll) {
+            removePreview();
+            if (this.position.endsWith("H1")) {
+                board[this.target.toString()] = this;
+                this.player.Home[0] = null;
+                return;
+            } else if (this.position.endsWith("H2")) {
+                board[this.target.toString()] = this;
+                this.player.Home[1] = null;
+                return;
+            } else if (this.position.endsWith("H3")) {
+                board[this.target.toString()] = this;
+                this.player.Home[2] = null;
+                return;
+            } else if (this.position.endsWith("H4")) {
+                board[this.target.toString()] = this;
+                this.player.Home[3] = null;
+                return;
+            } else {
+                if (this.target >= 40) roll = roll - 40;
+                board[this.target.toString()] = this;
+                board[this.position] = null;
+                return;
+            }
+        }
+    }
+
+    function removePreview() {
+        for (let i = 0; i <= 120; i++) board[i].classList.remove("eligable");
+        return;
     }
 
     function generatePlayers() {
@@ -203,6 +247,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
     
+    function rollDice(getOutOnly) {
+        let roll = Math.floor(Math.random(6) + 1);
+        let getOutAttempt = 1
+        if (!getOutOnly) {
+            return roll;
+        }
+
+        while (getOutOnly && getOutAttempt < 3 && roll != 6) {
+            roll = Math.floor(Math.random(6) + 1);
+            getOutAttempt += 1;
+        }
+
+        if (getOutOnly && roll != 6) roll = null;
+
+        return roll;
+    }
+
     function main() {
         initialize();
         board = Array.from(document.querySelectorAll("#grid div"));
@@ -211,4 +272,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     main();
+
+
 })
