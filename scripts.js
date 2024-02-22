@@ -137,13 +137,32 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        for (i = 0; i < 4; i++) {
-            piece = new figure(player, positions[i]);
-            player.figures.push(piece);
-            player.home(i) = positions(i);
-        }
+        for (player = 1; player < 5; player++) {
+            for (i = 0; i < 4; i++) {
+                piece = new figure(i, positions[i]);
+                switch (player) {
+                    case 1:
+                        yellow.figures.push(piece);
+                        yellow.home(i) = positions(i);
+                        continue;
+                    
+                    case 2:
+                        green.figures.push(piece);
+                        green.home(i) = positions(i);
+                        continue;
 
-        return player;
+                    case 3:
+                        black.figures.push(piece);
+                        black.home(i) = positions(i);
+                        continue;
+                    
+                    case 4:
+                        red.figures.push(piece);
+                        red.home(i) = positions(i);
+                        continue;
+                }
+            }
+        }
     }
 
     function generateVisuals(player1, player2, player3, player4) {
