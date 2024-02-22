@@ -26,25 +26,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 case 1:
                     this.startingPoint = "1";
                     this.endEnteringPoint = "40";
-                    this.dicePosition = 24;
+                    this.dicePosition = "24";
                     break
 
                 case 2:
                     this.startingPoint = "11";
                     this.endEnteringPoint = "10";
-                    this.dicePosition = 30;
+                    this.dicePosition = "30";
                     break;
 
                 case 3:
                     this.startingPoint = "21";
                     this.endEnteringPoint = "20";
-                    this.dicePosition = 96;
+                    this.dicePosition = "96";
                     break;
 
                 case 4:
                     this.startingPoint = "31";
                     this.endEnteringPoint = "30";
-                    this.dicePosition = 90;
+                    this.dicePosition = "90";
                     break;
             }
         }
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     positions = ["P4-H1", "P4-H2", "P4-H3", "P4-H4"];
                     break;
             }
-            
+
             for (i = 0; i < 4; i++) {
                 piece = new figure(i, positions[i]);
                 switch (player) {
@@ -283,7 +283,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function changePlayer() {
+        switch(currentPlayer) {
+            case 1:
+                board[yellow.dicePosition].classList.remove("dice");
+                board[green.dicePosition].classList.add("dice");
+                break;
+            
+            case 2:
+                board[green.dicePosition].classList.remove("dice");
+                board[black.dicePosition].classList.add("dice");
+                break;
 
+            case 3:
+                board[black.dicePosition].classList.remove("dice");
+                board[red.dicePosition].classList.add("dice");
+                break;
+            
+            case 4:
+                board[red.dicePosition].classList.remove("dice");
+                board[yellow.dicePosition].classList.add("dice");
+                break;
+        }
         currentPlayer == 4 ? currentPlayer = 1 : currentPlayer += 1
         
     }
