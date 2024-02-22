@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         null, null, null, null, null,
                         null, null, null, null, null
                     ]
-    let diceRoll;
     let currentPlayer = 1;
     
     // defining classes
@@ -116,24 +115,26 @@ document.addEventListener("DOMContentLoaded", () => {
         return player1, player2, player3, player4
     }
 
-    function generatePieces(player) {
+    function generatePieces() {
         let positions;
-        switch (player.id) {
-            case 1:
-                positions = ["P1-H1", "P1-H2", "P1-H3", "P1-H4"];
-                break;
-            
-            case 2:
-                positions = ["P2-H1", "P2-H2", "P2-H3", "P2-H4"];
-                break;
-
-            case 3:
-                positions = ["P3-H1", "P3-H2", "P3-H3", "P3-H4"];
-                break;
-
-            case 4:
-                positions = ["P4-H1", "P4-H2", "P4-H3", "P4-H4"];
-                break;
+        for (i = 1; i < 5; i++) {
+            switch (i) {
+                case 1:
+                    positions = ["P1-H1", "P1-H2", "P1-H3", "P1-H4"];
+                    break;
+                
+                case 2:
+                    positions = ["P2-H1", "P2-H2", "P2-H3", "P2-H4"];
+                    break;
+    
+                case 3:
+                    positions = ["P3-H1", "P3-H2", "P3-H3", "P3-H4"];
+                    break;
+    
+                case 4:
+                    positions = ["P4-H1", "P4-H2", "P4-H3", "P4-H4"];
+                    break;
+            }
         }
 
         for (i = 0; i < 4; i++) {
@@ -262,6 +263,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (getOutOnly && roll != 6) roll = null;
 
         return roll;
+    }
+
+    function changePlayer() {
+
+        currentPlayer == 4 ? currentPlayer = 1 : currentPlayer += 1
+        
     }
 
     function main() {
