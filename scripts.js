@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.figures = [];
             this.home = [];
             this.end = [null, null, null, null];
+            this.oneOut = false;
             this.startingPoint;
             this.endEnteringPoint;
             this.dicePosition;
@@ -266,20 +267,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     function rollDice(getOutOnly) {
-        let roll = Math.floor(Math.random(6) + 1);
-        let getOutAttempt = 1
-        if (!getOutOnly) {
-            return roll;
-        }
+        let roll;
+        let getOutAttempt = 0;
+        board[player.dicePosition].remove("dice1", "dice2", "dice3", "dice4", "dice5", "dice6", "diceButton", "eligable");
 
-        while (getOutOnly && getOutAttempt < 3 && roll != 6) {
+        while ((getOutOnly && getOutAttempt < 3 && roll != 6) || (!getOutOnly && getOutAttempt == 0)) {
             roll = Math.floor(Math.random(6) + 1);
             getOutAttempt += 1;
+        }
+
+        switch (roll) {
+            case 1:
+                board[player.dicePosition].add("dice1");
+                break;
+            case 2:
+                board[player.dicePosition].add("dice2");
+                break;
+            case 3:
+                board[player.dicePosition].add("dice3");
+                break;
+            case 4:
+                board[player.dicePosition].add("dice4");
+                break;
+            case 5:
+                board[player.dicePosition].add("dice5");
+                break;
+            case 6:
+                board[player.dicePosition].add("dice6");
+                break;
         }
 
         if (getOutOnly && roll != 6) roll = null;
 
         return roll;
+
     }
 
     function changePlayer() {
@@ -308,14 +329,27 @@ document.addEventListener("DOMContentLoaded", () => {
         
     }
 
+    function game() {
+        gameBoard = document.querySelectorAll(".gameBoard");
+        let clickTarget = e.target;
+        let clickTargetCL = target.classList;
+        let clickTargetElig = clickTargetCL.contains("eligable")
+        if (diceRoll === undefined && clickTargetElig) {
+            diceRoll = rollDice(!player.oneOut)
+        }
+
+    }
+
     function main() {
         initialize();
-        board = Array.from(document.querySelectorAll("#grid div"));
+        let diceRoll = undefined;
+        let board = Array.from(document.querySelectorAll("#grid div"));
         board[yellow.dicePosition].classList.add("dice");
         board[yellow.dicePosition].classList.add("eligable");
+        board.forEach(square => {
+            square.addEventListener("click", game);
+        })
     }
 
     main();
-
-
 })
