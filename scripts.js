@@ -116,9 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function generatePieces() {
-        let positions;
-        for (i = 1; i < 5; i++) {
-            switch (i) {
+        for (player = 1; player < 5; player++) {
+            let positions;
+            switch (player) {
                 case 1:
                     positions = ["P1-H1", "P1-H2", "P1-H3", "P1-H4"];
                     break;
@@ -135,9 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     positions = ["P4-H1", "P4-H2", "P4-H3", "P4-H4"];
                     break;
             }
-        }
-
-        for (player = 1; player < 5; player++) {
+            
             for (i = 0; i < 4; i++) {
                 piece = new figure(i, positions[i]);
                 switch (player) {
