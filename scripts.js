@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // initialising important variables
+    let board;
     let gameState = [
                         null, null, null, null, null,
                         null, null, null, null, null,
@@ -11,6 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         null, null, null, null, null
                     ]
     let currentPlayer = 1;
+    let yellow;
+    let green;
+    let black;
+    let red;
     
     // defining classes
     class player {
@@ -20,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.home = [];
             this.end = [null, null, null, null];
             this.oneOut = false;
+            this.oneHome = true;
             this.startingPoint;
             this.endEnteringPoint;
             this.dicePosition;
@@ -37,13 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     break;
 
                 case 3:
-                    this.startingPoint = "21";
+                    this.startingPoint = "31";
                     this.endEnteringPoint = "20";
                     this.dicePosition = "96";
                     break;
 
                 case 4:
-                    this.startingPoint = "31";
+                    this.startingPoint = "21";
                     this.endEnteringPoint = "30";
                     this.dicePosition = "90";
                     break;
@@ -108,12 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function generatePlayers() {
-        let player1 = new player(1);
-        let player2 = new player(2);
-        let player3 = new player(3);
-        let player4 = new player(4);
+        yellow = new player(1);
+        green = new player(2);
+        black = new player(3);
+        red = new player(4);
 
-        return player1, player2, player3, player4
+        return [yellow, green, black, red];
     }
 
     function generatePieces() {
@@ -142,22 +148,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 switch (player) {
                     case 1:
                         yellow.figures.push(piece);
-                        yellow.home(i) = positions(i);
+                        yellow.home[i] = positions[i];
                         continue;
                     
                     case 2:
                         green.figures.push(piece);
-                        green.home(i) = positions(i);
+                        green.home[i] = positions[i];
                         continue;
 
                     case 3:
                         black.figures.push(piece);
-                        black.home(i) = positions(i);
+                        black.home[i] = positions[i];
                         continue;
                     
                     case 4:
                         red.figures.push(piece);
-                        red.home(i) = positions(i);
+                        red.home[i] = positions[i];
                         continue;
                 }
             }
@@ -215,19 +221,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } else if (p1Home.includes(i)) {
                 id = "P1-H" + (p1Home.indexOf(i) + 1);
-                div.setAttribute("class", "gameBoard p1Home p1Piece");
+                div.setAttribute("class", "gameBoard p1Home occupied p1Piece");
 
             } else if (p2Home.includes(i)) {
                 id = "P2-H" + (p2Home.indexOf(i) + 1);
-                div.setAttribute("class", "gameBoard p2Home p2Piece");
+                div.setAttribute("class", "gameBoard p2Home occupied p2Piece");
 
             } else if (p3Home.includes(i)) {
                 id = "P3-H" + (p3Home.indexOf(i) + 1);
-                div.setAttribute("class", "gameBoard p3Home p3Piece");
+                div.setAttribute("class", "gameBoard p3Home occupied p3Piece");
                  
             } else if (p4Home.includes(i)) {
                 id = "P4-H" + (p4Home.indexOf(i) + 1);
-                div.setAttribute("class", "gameBoard p4Home p4Piece");
+                div.setAttribute("class", "gameBoard p4Home occupied p4Piece");
                  
             } else if (p1End.includes(i)) {
                 id = "P1-E" + (p1End.indexOf(i) + 1);
@@ -256,9 +262,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function initialize() {
-        yellow, green, black, red = generatePlayers();
-        players = [yellow, green, black, red];
-        players.forEach(player => {
+        let playerArray = generatePlayers();
+        console.log(playerArray);
+        playerArray.forEach(player => {
             generatePieces(player);
         });
 
@@ -325,17 +331,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 board[yellow.dicePosition].classList.add("dice");
                 break;
         }
-        currentPlayer == 4 ? currentPlayer = 1 : currentPlayer += 1
-        
+        currentPlayer == 4 ? currentPlayer = 1 : currentPlayer += 1;
+        return;
     }
 
-    function game() {
+    function game(e) {
         gameBoard = document.querySelectorAll(".gameBoard");
         let clickTarget = e.target;
-        let clickTargetCL = target.classList;
+        let clickTargetCL = e.target.classList;
         let clickTargetElig = clickTargetCL.contains("eligable")
+        let diceRoll;
         if (diceRoll === undefined && clickTargetElig) {
             diceRoll = rollDice(!player.oneOut)
+            if (diceRoll) {
+                clickTargetCL.remove("eligable");
+                if (player.oneHome && diceRoll == 6) {
+
+                }
+            }
         }
 
     }
