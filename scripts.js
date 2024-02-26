@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentPlayer = 1;
     let yellow;
     let green;
-    let black;
     let red;
+    let black;
     
     // defining classes
     class player {
@@ -116,10 +116,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function generatePlayers() {
         yellow = new player(1);
         green = new player(2);
-        black = new player(3);
-        red = new player(4);
+        red = new player(3);
+        black = new player(4);
 
-        return [yellow, green, black, red];
+        return [yellow, green, red, black];
     }
 
     function generatePieces() {
@@ -157,13 +157,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         continue;
 
                     case 3:
-                        black.figures.push(piece);
-                        black.home[i] = positions[i];
+                        red.figures.push(piece);
+                        red.home[i] = positions[i];
                         continue;
                     
                     case 4:
-                        red.figures.push(piece);
-                        red.home[i] = positions[i];
+                        black.figures.push(piece);
+                        black.home[i] = positions[i];
                         continue;
                 }
             }
@@ -268,13 +268,13 @@ document.addEventListener("DOMContentLoaded", () => {
             generatePieces(player);
         });
 
-        generateVisuals(yellow, green, black, red);
+        generateVisuals(yellow, green, red, black);
 
     }
     
     function rollDice(getOutOnly) {
-        let roll;
         let getOutAttempt = 0;
+        console.log(player);
         board[player.dicePosition].remove("dice1", "dice2", "dice3", "dice4", "dice5", "dice6", "diceButton", "eligable");
 
         while ((getOutOnly && getOutAttempt < 3 && roll != 6) || (!getOutOnly && getOutAttempt == 0)) {
@@ -322,12 +322,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
 
             case 3:
-                board[black.dicePosition].classList.remove("dice");
-                board[red.dicePosition].classList.add("dice");
+                board[red.dicePosition].classList.remove("dice");
+                board[black.dicePosition].classList.add("dice");
                 break;
             
             case 4:
-                board[red.dicePosition].classList.remove("dice");
+                board[black.dicePosition].classList.remove("dice");
                 board[yellow.dicePosition].classList.add("dice");
                 break;
         }
@@ -336,6 +336,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function game(e) {
+        let player
+        switch(currentPlayer) {
+            case 1:
+                player = yellow;
+                break;
+            case 2:
+                player = green;
+                break;
+            case 3:
+                player = red;
+                break;
+            case 4:
+                player = black
+                break;
+        }
         gameBoard = document.querySelectorAll(".gameBoard");
         let clickTarget = e.target;
         let clickTargetCL = e.target.classList;
@@ -355,8 +370,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function main() {
         initialize();
+        let currentPlayer = 1
         let diceRoll = undefined;
-        let board = Array.from(document.querySelectorAll("#grid div"));
+        board = Array.from(document.querySelectorAll("#grid div"));
         board[yellow.dicePosition].classList.add("dice");
         board[yellow.dicePosition].classList.add("eligable");
         board.forEach(square => {

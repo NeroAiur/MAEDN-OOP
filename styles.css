@@ -85,42 +85,42 @@
 
 .grid .p3Home {
     border-radius: 20px;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(243, 0, 0);
     box-sizing: border-box;
-    border: solid 0.25px rgb(255, 255, 255);
+    border: solid 0.25px rgb(0, 0, 0);
 }
 
 .grid .p3StartingPoint {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(243, 0, 0);
     box-sizing: border-box;
-    border: solid 0.25px rgb(255, 255, 255);
+    border: solid 0.25px rgb(0, 0, 0);
 }
 
 .grid .p3End {
     border-radius: 20px;
+    background-color: rgb(243, 0, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .p4Home {
+    border-radius: 20px;
     background-color: rgb(0, 0, 0);
     box-sizing: border-box;
     border: solid 0.25px rgb(255, 255, 255);
 }
 
-.grid .p4Home {
-    border-radius: 20px;
-    background-color: rgb(243, 0, 0);
-    box-sizing: border-box;
-    border: solid 0.25px rgb(0, 0, 0);
-}
-
 .grid .p4StartingPoint {
-    background-color: rgb(243, 0, 0);
+    background-color: rgb(0, 0, 0);
     box-sizing: border-box;
-    border: solid 0.25px rgb(0, 0, 0);
+    border: solid 0.25px rgb(255, 255, 255);
 }
 
 .grid .p4End {
     border-radius: 20px;
-    background-color: rgb(243, 0, 0);
+    background-color: rgb(0, 0, 0);
     box-sizing: border-box;
-    border: solid 0.25px rgb(0, 0, 0);
+    border: solid 0.25px rgb(255, 255, 255);
 }
 
 .grid .occupied.p1Piece {
