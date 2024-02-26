@@ -136,13 +136,13 @@
 }
 
 .grid .occupied.p3Piece {
-    background-image: url(img/figures/playFigure3.svg);
+    background-image: url(img/figures/playFigure4.svg);
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .grid .occupied.p4Piece {
-    background-image: url(img/figures/playFigure4.svg);
+    background-image: url(img/figures/playFigure3.svg);
     background-size: cover;
     background-repeat: no-repeat;
 }
