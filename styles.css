@@ -1,0 +1,217 @@
+.container {
+    width: auto;
+    display: flex;
+    justify-content: center;    
+}
+
+.table {
+    border-radius: 150px;
+    display: flex;
+    flex-direction: column;
+    width: 580px;
+    height: 580px;
+    justify-content: center;
+    align-items: center;
+    background-image: url(img/wood-background.jpg)
+}
+
+#whosTurn {
+    margin-top: 2px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.grid {
+    background-color: rgb(254, 254, 147);
+    height: 475px;
+    width: 475px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid div {
+    margin: 1px;
+    width: 41.17px;
+    height: 41.17px;
+    background-color: rgb(254, 254, 147);
+}
+
+.grid .gameBoard {
+    background-color: lightgrey;
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .p1Home {
+    border-radius: 20px;
+    background-color: rgb(253, 254, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .p1StartingPoint {
+    background-color: rgb(253, 254, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .p1End {
+    border-radius: 20px;
+    background-color: rgb(253, 254, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .p2Home {
+    border-radius: 20px;
+    background-color: rgb(49, 153, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .p2StartingPoint {
+    background-color: rgb(49, 153, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .p2End {
+    border-radius: 20px;
+    background-color: rgb(49, 153, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .p3Home {
+    border-radius: 20px;
+    background-color: rgb(0, 0, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(255, 255, 255);
+}
+
+.grid .p3StartingPoint {
+    background-color: rgb(0, 0, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(255, 255, 255);
+}
+
+.grid .p3End {
+    border-radius: 20px;
+    background-color: rgb(0, 0, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(255, 255, 255);
+}
+
+.grid .p4Home {
+    border-radius: 20px;
+    background-color: rgb(243, 0, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .p4StartingPoint {
+    background-color: rgb(243, 0, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .p4End {
+    border-radius: 20px;
+    background-color: rgb(243, 0, 0);
+    box-sizing: border-box;
+    border: solid 0.25px rgb(0, 0, 0);
+}
+
+.grid .occupied.p1Piece {
+    background-image: url(img/figures/playFigure1.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.grid .occupied.p2Piece {
+    background-image: url(img/figures/playFigure2.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.grid .occupied.p3Piece {
+    background-image: url(img/figures/playFigure3.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.grid .occupied.p4Piece {
+    background-image: url(img/figures/playFigure4.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.grid .dice {
+    background-color: rgb(0, 0, 0);
+    background-image: url(img/dice/dice3.svg);
+}
+
+.grid .dice1 {
+    background-color: rgb(0, 0, 0);
+    background-image: url(img/dice/dice1.svg);
+}
+
+.grid .dice2 {
+    background-color: rgb(0, 0, 0);
+    background-image: url(img/dice/dice2.svg);
+}
+
+.grid .dice3 {
+    background-color: rgb(0, 0, 0);
+    background-image: url(img/dice/dice3.svg);
+}
+
+.grid .dice4 {
+    background-color: rgb(0, 0, 0);
+    background-image: url(img/dice/dice4.svg);
+}
+
+.grid .dice5 {
+    background-color: rgb(0, 0, 0);
+    background-image: url(img/dice/dice5.svg);
+}
+
+.grid .dice6 {
+    background-color: rgb(0, 0, 0);
+    background-image: url(img/dice/dice6.svg);
+}
+
+.grid .eligable {
+    -webkit-animation: flickerAnimation 1s infinite;
+    -moz-animation: flickerAnimation 1s infinite;
+    -o-animation: flickerAnimation 1s infinite;
+    animation: flickerAnimation 1s infinite;
+}
+
+@keyframes flickerAnimation {
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+}
+@-o-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+}
+.animate-flicker {
+    -webkit-animation: flickerAnimation 1s infinite;
+    -moz-animation: flickerAnimation 1s infinite;
+    -o-animation: flickerAnimation 1s infinite;
+    animation: flickerAnimation 1s infinite;
+}
