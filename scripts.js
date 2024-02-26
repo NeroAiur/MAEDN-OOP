@@ -43,13 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     break;
 
                 case 3:
-                    this.startingPoint = "31";
+                    this.startingPoint = "21";
                     this.endEnteringPoint = "20";
                     this.dicePosition = "96";
                     break;
 
                 case 4:
-                    this.startingPoint = "21";
+                    this.startingPoint = "31";
                     this.endEnteringPoint = "30";
                     this.dicePosition = "90";
                     break;
@@ -186,13 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let p1Home = [0, 1, 11, 12];
         let p2Home = [9, 10, 20, 21];
-        let p3Home = [99, 100, 110, 111];
-        let p4Home = [108, 109, 119, 120];
+        let p3Home = [108, 109, 119, 120];
+        let p4Home = [99, 100, 110, 111];
 
         let p1End = [56, 57, 58, 59];
         let p2End = [16, 27, 38, 49];
-        let p3End = [104, 93, 82, 71];
-        let p4End = [64, 63, 62, 61];
+        let p3End = [64, 63, 62, 61];
+        let p4End = [104, 93, 82, 71];
 
         for (let i = 0; i <= 120; i++) {
             var div = document.createElement("div");
@@ -272,39 +272,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
     
-    function rollDice(getOutOnly) {
+    function rollDice(getOutOnly, player) {
         let getOutAttempt = 0;
-        console.log(player);
-        board[player.dicePosition].remove("dice1", "dice2", "dice3", "dice4", "dice5", "dice6", "diceButton", "eligable");
+        let roll;
+        board[player.dicePosition].classList.remove("diceButton", "eligable");
 
         while ((getOutOnly && getOutAttempt < 3 && roll != 6) || (!getOutOnly && getOutAttempt == 0)) {
-            roll = Math.floor(Math.random(6) + 1);
+            roll = Math.ceil(Math.random() * 6);
             getOutAttempt += 1;
         }
 
         switch (roll) {
             case 1:
-                board[player.dicePosition].add("dice1");
+                board[player.dicePosition].classList.add("dice1");
                 break;
             case 2:
-                board[player.dicePosition].add("dice2");
+                board[player.dicePosition].classList.add("dice2");
                 break;
             case 3:
-                board[player.dicePosition].add("dice3");
+                board[player.dicePosition].classList.add("dice3");
                 break;
             case 4:
-                board[player.dicePosition].add("dice4");
+                board[player.dicePosition].classList.add("dice4");
                 break;
             case 5:
-                board[player.dicePosition].add("dice5");
+                board[player.dicePosition].classList.add("dice5");
                 break;
             case 6:
-                board[player.dicePosition].add("dice6");
+                board[player.dicePosition].classList.add("dice6");
                 break;
         }
 
         if (getOutOnly && roll != 6) roll = null;
-
         return roll;
 
     }
@@ -357,7 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let clickTargetElig = clickTargetCL.contains("eligable")
         let diceRoll;
         if (diceRoll === undefined && clickTargetElig) {
-            diceRoll = rollDice(!player.oneOut)
+            diceRoll = rollDice(!player.oneOut, player);
             if (diceRoll) {
                 clickTargetCL.remove("eligable");
                 if (player.oneHome && diceRoll == 6) {
